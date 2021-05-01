@@ -55,6 +55,16 @@ tr {
   text-align: center;
 }
 
+.cards-section {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
 .card {
   width: 18rem;
+  margin: 20px;
+}
+.card-img-top {
+  height: 45%;
 }
