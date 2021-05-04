@@ -35,6 +35,7 @@ const TouristInfoCards = () => {
         //add the info as a property
         return (
           <Card
+            key={city.cityName.toLowerCase()}
             title={city.cityName}
             description={city.text}
             imageUrl={city.url}

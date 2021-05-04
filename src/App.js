@@ -5,6 +5,7 @@ import "./App.css";
 import Card from "./Card";
 import Heading from "./Heading";
 import TouristInfoCards from "./TouristInfoCards";
+import Footer from "./Footer";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Heading />
       <TouristInfoCards />
       <Bookings />
+      <Footer />
     </div>
   );
 };
