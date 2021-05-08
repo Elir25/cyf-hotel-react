@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 
 const SearchResults = props => {
@@ -28,9 +29,7 @@ const SearchResults = props => {
               <td>{customer.roomId}</td>
               <td>{customer.checkInDate}</td>
               <td>{customer.checkOutDate}</td>
-              <td>
-                {/*getNights(customer.checkInDate, customer.checkOutDate)*/}
-              </td>
+              <td>{getNights(customer.checkInDate, customer.checkOutDate)}</td>
             </tr>
           );
         })}
@@ -40,11 +39,11 @@ const SearchResults = props => {
 };
 //FIX THE MOMENT.JS PROBLEM
 
-/*function getNights(startDate, endDate) {
-let a = moment(startDate);
-let b = moment(endDate);
-a.diff(b) 
-}*/
+function getNights(startDate, endDate) {
+  let a = moment(startDate);
+  let b = moment(endDate);
+  return b.diff(a, "days");
+}
 export default SearchResults;
 /****Instructions:** Add another column to your `<SearchResults />` table which 
  * shows the number of nights a guest is staying.
