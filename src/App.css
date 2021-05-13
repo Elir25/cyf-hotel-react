@@ -70,3 +70,7 @@ tr {
 .card-img-top {
   height: 45%;
 }
+
+.active-row {
+  background: aquamarine;
+}

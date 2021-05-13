@@ -1,7 +1,13 @@
 import React from "react";
+import bookings from "./Bookings";
+import Search from "./Search";
 
 const SearchButton = () => {
-  return <button className="btn btn-primary">Search</button>;
+  return (
+    <button onClick={Search} className="btn btn-primary">
+      Search
+    </button>
+  );
 };
 
 export default SearchButton;

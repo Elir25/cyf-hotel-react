@@ -1,5 +1,6 @@
-import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
+import Customer from "./Customer";
+//import moment from "moment";
 
 const SearchResults = props => {
   return (
@@ -19,40 +20,29 @@ const SearchResults = props => {
       </thead>
       <tbody>
         {props.results.map(customer => {
-          return (
-            <tr key={customer.id}>
-              <td>{customer.id}</td>
-              <td>{customer.title}</td>
-              <td>{customer.firstName}</td>
-              <td>{customer.surname}</td>
-              <td>{customer.email}</td>
-              <td>{customer.roomId}</td>
-              <td>{customer.checkInDate}</td>
-              <td>{customer.checkOutDate}</td>
-              <td>{getNights(customer.checkInDate, customer.checkOutDate)}</td>
-            </tr>
-          );
+          return <Customer customer={customer} />;
         })}
       </tbody>
     </table>
   );
 };
-//FIX THE MOMENT.JS PROBLEM
 
-function getNights(startDate, endDate) {
-  let a = moment(startDate);
-  let b = moment(endDate);
-  return b.diff(a, "days");
-}
 export default SearchResults;
-/****Instructions:** Add another column to your `<SearchResults />` table which 
- * shows the number of nights a guest is staying.
 
-**Hint:** Try installing the [moment.js library](http://momentjs.com/) 
-(you'll need to install it with `npm install moment --save`) and using 
-the [`.diff()` method](http://momentjs.com/docs/#/displaying/difference/) to
- compare dates, you may need to declare variables for the dates and declare 
- the "unit of measurement" without leaving spaces in the ""
+/****Instructions:** Within the 
+ * `<SearchResults />` component or its 
+ * child components, add an `onClick` handler to each
+ *  row in the table (hint: on the `<tr>` element). 
+ * When clicked, the row is "selected" and highlighted
+ *  with a different colour. When clicked again,
+ *  the row is unselected and the coloured highlighting 
+ * is removed.
 
-**Test:** Each booking in your table should show the number of nights
- in a separate column. For example, Mr John Doe has a booking for **2** nights. */
+**Hint:** Use a new state variable for each row to record
+ if the row is selected or not, and use this value to set a 
+ class to the `className` prop of the row, the className 
+ value can contain an usestate and change its value depending 
+ on it
+
+**Test:** Verify that each row of your table can be highlighted
+ (on and off) independently when being clicked. */

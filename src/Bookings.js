@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import Search from "./Search.js";
 import SearchResults from "./SearchResults.js";
 import FakeBookings from "./data/fakeBookings.json";
-import Search from "./Search.js";
 
 const Bookings = () => {
-  const [bookings, setBookings] = useState(FakeBookings);
+  const [bookings, setBookings] = useState([]);
 
   const search = searchVal => {
-    console.info("TO DO!", searchVal);
+    console.log(`searching ${searchVal}`);
+    // console.info("TO DO!", searchVal);
+    //setBookings(FakeBookings);
+    const guests = FakeBookings;
+
+    const filteredGuests = guests.filter(guest => {
+      return (
+        guest.firstName.toLowerCase().indexOf(searchVal.toLowerCase()) !== -1
+      );
+    });
+    console.log(`found ${filteredGuests}`);
+    setBookings(filteredGuests);
   };
 
   return (
