@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-//import SearchButton from "./SearchButton";
-//import Bookings from   "./Bookings";
+import SearchButton from "./SearchButton";
+//import Bookings from "./Bookings";
 
 const Search = props => {
-  const onChange = () => {
-    props.search(document.getElementById("customerName").value);
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleSearchInput = event => {
+    console.log(searchInput);
+    setSearchInput(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    //console.log(searchInput);
+    props.search(searchInput);
   };
 
   return (
@@ -14,19 +23,20 @@ const Search = props => {
       </div>
       <div className="row search-wrapper">
         <div className="col">
-          {/* <form className="form-group search-box"> */}
-          <label htmlFor="customerName">Customer name</label>
-          <div className="search-row">
-            <input
-              type="text"
-              id="customerName"
-              className="form-control"
-              placeholder="Customer name"
-              onChange={onChange}
-            />
-            {/* <SearchButton /> */}
-          </div>
-          {/* </form> */}
+          <form onSubmit={handleSubmit} className="form-group search-box">
+            <label htmlFor="customerName">Customer name</label>
+            <div className="search-row">
+              <input
+                type="text"
+                id="customerName"
+                className="form-control"
+                placeholder="Customer name"
+                value={searchInput}
+                onChange={handleSearchInput}
+              />
+              <SearchButton />
+            </div>
+          </form>
         </div>
       </div>
     </div>

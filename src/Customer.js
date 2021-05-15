@@ -30,6 +30,9 @@ function Customer({ customer }) {
       <td>{customer.checkInDate}</td>
       <td>{customer.checkOutDate}</td>
       <td>{getNights(customer.checkInDate, customer.checkOutDate)}</td>
+      <td>
+        <button>Show Profile</button>
+      </td>
     </tr>
   );
 }
