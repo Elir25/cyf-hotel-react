@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import moment from "moment";
+import CustomerProfile from "./CustomerProfile";
+import ShowProfileButton from "./ShowProfileButton";
 
-function Customer({ customer }) {
+function Customer({ customer, customerId }) {
   const [activeRow, setActiveRow] = useState("");
 
   const highlighRow = () => {
     if (activeRow == "") {
-      setActiveRow("active-Row");
+      setActiveRow("active-row");
     } else {
       setActiveRow("");
     }
@@ -18,6 +20,11 @@ function Customer({ customer }) {
 
     return b.diff(a, "days");
   }
+
+  const handleClickProfButton = () => {
+    console.log("This");
+    customerId(customer.id);
+  };
 
   return (
     <tr onClick={highlighRow} className={activeRow}>
@@ -31,7 +38,7 @@ function Customer({ customer }) {
       <td>{customer.checkOutDate}</td>
       <td>{getNights(customer.checkInDate, customer.checkOutDate)}</td>
       <td>
-        <button>Show Profile</button>
+        <ShowProfileButton click={handleClickProfButton} />
       </td>
     </tr>
   );
