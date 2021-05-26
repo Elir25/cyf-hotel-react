@@ -16,8 +16,13 @@ const CustomerProfile = props => {
 
   return (
     <div>
-      <p>Customer {customer.id} Profile</p>
-      {customer.title}
+      <p>Customer {customer.id} Profile:</p>
+      <ul>
+        <li>{customer.title}</li>
+        <li>{customer.firstName}</li>
+        <li>{customer.email}</li>
+        <li>{customer.vip}</li>
+      </ul>
       <button onClick={props.onClose}>Close profile</button>
     </div>
   );
