@@ -3,7 +3,7 @@ import moment from "moment";
 import CustomerProfile from "./CustomerProfile";
 import ShowProfileButton from "./ShowProfileButton";
 
-function Customer({ customer, customerId }) {
+function Customer({ customer, onSelectedCustomerId }) {
   const [activeRow, setActiveRow] = useState("");
 
   const highlighRow = () => {
@@ -21,13 +21,13 @@ function Customer({ customer, customerId }) {
     return b.diff(a, "days");
   }
 
-  const handleClickProfButton = () => {
-    console.log("This");
-    customerId(customer.id);
+  const handleOnClickProfButton = () => {
+    // console.log("This");
+    onSelectedCustomerId(customer.id);
   };
 
   return (
-    <tr onClick={highlighRow} className={activeRow}>
+    <tr key={customer.id} onClick={highlighRow} className={activeRow}>
       <td>{customer.id}</td>
       <td>{customer.title}</td>
       <td>{customer.firstName}</td>
@@ -38,7 +38,7 @@ function Customer({ customer, customerId }) {
       <td>{customer.checkOutDate}</td>
       <td>{getNights(customer.checkInDate, customer.checkOutDate)}</td>
       <td>
-        <ShowProfileButton click={handleClickProfButton} />
+        <ShowProfileButton onClickButton={handleOnClickProfButton} />
       </td>
     </tr>
   );

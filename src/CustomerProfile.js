@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const CustomerProfile = props => {
-  const [profile, setProfile] = useState("");
+  const [customer, setCustomer] = useState({});
 
-  const ShowId = () => {
-    setProfile(props.customer.id);
-  };
-  return <div>{/* <p>Customer id is {ShowId}</p> */}</div>;
+  useEffect(() => {
+    // console.log("Fetching data...");
+
+    fetch(`https://cyf-react.glitch.me/customers/${props.customerId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setCustomer(data);
+      });
+  }, [props.customerId]);
+
+  return (
+    <div>
+      <p>Customer {customer.id} Profile</p>
+      {customer.title}
+      <button onClick={props.onClose}>Close profile</button>
+    </div>
+  );
 };
 
 export default CustomerProfile;

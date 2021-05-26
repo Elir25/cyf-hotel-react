@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import Customer from "./Customer";
 import CustomerProfile from "./CustomerProfile";
-//import moment from "moment";
 
 const SearchResults = props => {
-  const [activeCustomer, setActiveCustomer] = useState(null);
+  const [activeCustomerId, setActiveCustomerId] = useState(null);
 
-  const customerID = Id => {
+  const handleOnSelectedCustomerId = Id => {
+    //created this func to reciving the prop from customer
     console.log(Id);
-
-    setActiveCustomer(Id);
+    setActiveCustomerId(Id);
   };
+
+  function showProfile() {
+    if (activeCustomerId != null) {
+      return (
+        <CustomerProfile
+          customerId={activeCustomerId}
+          onClose={() => setActiveCustomerId(null)}
+        />
+      );
+    }
+  }
 
   return (
     <div>
@@ -30,13 +40,21 @@ const SearchResults = props => {
         </thead>
         <tbody>
           {props.results.map(customer => {
-            return <Customer customer={customer} customerId={customerID} />;
+            //passing two props, customer and customer id
+            return (
+              <Customer
+                key={customer.id}
+                customer={customer}
+                onSelectedCustomerId={handleOnSelectedCustomerId}
+              />
+            );
           })}
         </tbody>
       </table>
-      <CustomerProfile />
+      {showProfile()}
     </div>
   );
 };
 
 export default SearchResults;
+//trying to render the customerProfile WHEN the buton is clicked
