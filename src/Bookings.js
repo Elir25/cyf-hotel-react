@@ -5,14 +5,18 @@ import SearchResults from "./SearchResults.js";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  //const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`https://cyf-react.glitch.me`)
+    console.log(isLoading);
+    fetch(`https://cyf-react.glitch.me/delayed`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
 
         setBookings(data);
+        setIsLoading(false);
       });
   }, []);
   const search = searchVal => {
@@ -34,6 +38,7 @@ const Bookings = () => {
       <div className="container">
         <Search search={search} />
         <SearchResults results={bookings} />
+        {isLoading && <p>Loading data...</p>}
       </div>
     </div>
   );
