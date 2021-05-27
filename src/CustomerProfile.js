@@ -16,14 +16,17 @@ const CustomerProfile = props => {
 
   return (
     <div>
-      <p>Customer {customer.id} Profile:</p>
+      <h3>Customer Profile:</h3>
       <ul>
-        <li>{customer.title}</li>
-        <li>{customer.firstName}</li>
-        <li>{customer.email}</li>
-        <li>{customer.vip}</li>
+        <li>{`Customer id: ${customer.id}`}</li>
+        <li>{`Name: ${customer.firstName}`}</li>
+        <li>{`Email: ${customer.email}`}</li>
+        <li>{`Phone Number: ${customer.phoneNumber}`}</li>
+        {customer.vip && <li>{`Vip: ${customer.vip}`}</li>}
       </ul>
-      <button onClick={props.onClose}>Close profile</button>
+      <button onClick={props.onClose} className="btn btn-primary">
+        Close profile
+      </button>
     </div>
   );
 };

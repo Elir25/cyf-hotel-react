@@ -57,4 +57,3 @@ const SearchResults = props => {
 };
 
 export default SearchResults;
-//trying to render the customerProfile WHEN the buton is clicked
